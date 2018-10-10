@@ -11,7 +11,7 @@ function parseDate(str, format, locale) {
   if (DateUtils.isDate(parsed)) {
     return parsed
   }
-  return undefined
+  return null
 }
 
 function formatDate(date, format, locale) {
@@ -39,7 +39,7 @@ class Filter extends Component {
     if (DateUtils.isDate(parsed)) {
       return parsed
     }
-    return undefined
+    return null
   }
 
   formatDate = (date, format, locale) => {

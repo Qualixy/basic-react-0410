@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 const showDecorator = (OriginalComponent) =>
-  class ShowDecorator extends Component {
+  class extends Component {
     state = {
       isShow: false
     }
