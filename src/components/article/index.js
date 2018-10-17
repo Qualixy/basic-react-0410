@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import CSSTransition from 'react-addons-css-transition-group'
 import CommentList from '../comment-list'
 import './style.css'
@@ -13,7 +14,7 @@ class Index extends PureComponent {
   }
 
   render() {
-    const { article, isOpen } = this.props
+    const { article, isOpen, useTransition } = this.props
     return (
       <div>
         <h3>
@@ -22,15 +23,17 @@ class Index extends PureComponent {
             {isOpen ? 'close' : 'open'}
           </button>
         </h3>
-        <CSSTransition
-          transitionAppear
-          transitionName="article"
-          transitionEnterTimeout={500}
-          transitionAppearTimeout={1000}
-          transitionLeaveTimeout={300}
-        >
-          {this.body}
-        </CSSTransition>
+        {useTransition ? (
+          <CSSTransition
+            transitionName="article"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+          >
+            {this.body}
+          </CSSTransition>
+        ) : (
+          this.body
+        )}
       </div>
     )
   }
@@ -49,6 +52,17 @@ class Index extends PureComponent {
       </section>
     )
   }
+}
+
+Index.propTypes = {
+  article: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
+  }).isRequired,
+  isOpen: PropTypes.bool,
+  toggleOpen: PropTypes.func,
+  useTransition: PropTypes.bool
 }
 
 export default Index

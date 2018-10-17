@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Comment({ comment }) {
+function Index({ comment }) {
   return (
     <div>
       {comment.text} <b>by {comment.user}</b>
@@ -9,11 +9,11 @@ function Comment({ comment }) {
   )
 }
 
-Comment.propTypes = {
+Index.propTypes = {
   comment: PropTypes.shape({
     text: PropTypes.string.isRequired,
     user: PropTypes.string
   }).isRequired
 }
 
-export default Comment
+export default Index
